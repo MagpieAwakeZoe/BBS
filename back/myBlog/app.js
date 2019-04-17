@@ -10,9 +10,9 @@ var bodyParser  = require('body-parser');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/bbs');
 
-var indexRouter = require('./routes/index');
+var tokenRouter = require('./routes/tokenVerify');
 var usersRouter = require('./routes/users');
-// var pagesRouter = require('./routes/page');
+
 
 var app = express();
 
@@ -32,9 +32,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
 
 app.use('/users', usersRouter);
+app.use('/token', tokenRouter);
 // app.use('/pages', pagesRouter);
 
 // catch 404 and forward to error handler
